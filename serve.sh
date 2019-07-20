@@ -1,1 +1,1 @@
-go run cmd/go-celeb-poc/main.go --port=9090
+go run cmd/go-celeb-poc-server/main.go --port=9090
