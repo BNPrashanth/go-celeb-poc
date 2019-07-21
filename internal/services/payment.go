@@ -3,6 +3,7 @@ package services
 import (
 	"bytes"
 	"net/http"
+	"strconv"
 
 	middleware "github.com/go-openapi/runtime/middleware"
 
@@ -35,13 +36,14 @@ func IntitalizePayPalService() {
 	if err != nil {
 		logger.Log.Error(err.Error())
 	}
-	err = requestWithBasic(req, PayPalClient)
+	err = requestWithBasic(req, &PayPalClient)
 	if err != nil {
 		logger.Log.Error(err.Error())
 	}
 
 	if PayPalClient.AccessToken != "" {
 		logger.Log.Info("PayPal Service started..")
+		logger.Log.Info(strconv.Itoa(PayPalClient.ExpiresIn))
 	}
 
 }

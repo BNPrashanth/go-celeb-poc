@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func requestWithBasic(req *http.Request, obj interface{}) error {
+func requestWithBasic(req *http.Request, response interface{}) error {
 	client := &http.Client{}
 	req.SetBasicAuth(viper.GetString("pp_client"), viper.GetString("pp_secret"))
 	req.Header.Set("Content-type", "application/x-www-form-urlencoded")
@@ -19,5 +19,6 @@ func requestWithBasic(req *http.Request, obj interface{}) error {
 		logger.Log.Error(err.Error())
 	}
 	bodyText, err := ioutil.ReadAll(resp.Body)
-	return json.Unmarshal(bodyText, &PayPalClient)
+	logger.Log.Info(string(bodyText))
+	return json.Unmarshal(bodyText, response)
 }
