@@ -13,6 +13,7 @@ import (
 	"github.com/BNPrashanth/go-celeb-poc/internal/config"
 	"github.com/BNPrashanth/go-celeb-poc/internal/controllers"
 	"github.com/BNPrashanth/go-celeb-poc/internal/logger"
+	"github.com/BNPrashanth/go-celeb-poc/internal/services"
 	"github.com/BNPrashanth/go-celeb-poc/restapi/operations"
 	"github.com/BNPrashanth/go-celeb-poc/restapi/operations/test"
 )
@@ -36,6 +37,8 @@ func configureAPI(api *operations.GoCelebPocAPI) http.Handler {
 	// Custom Configurations
 	config.InitializeViper()
 	logger.InitializeZapCustomLogger()
+
+	services.IntitalizePayPalService()
 
 	logger.Log.Info("GO-CELEB-POC-SERVER Started..")
 	// Custom Configurations
